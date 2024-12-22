@@ -1,0 +1,19 @@
+server {
+    listen 443 ssl;
+    server_name wsdash.work.gd.;
+
+    ssl_certificate /etc/nginx/certs/wsdash.work.gd.cer;
+    ssl_certificate_key /etc/nginx/certs/wsdash.work.gd.key;
+
+    location / {
+        proxy_pass http://wsdash.work.gd.:3001;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+
+server {
+    listen 80;
+    server_name wsdash.work.gd.;
+    return 301 https://$host$request_uri;
+}

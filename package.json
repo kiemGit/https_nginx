@@ -1,0 +1,16 @@
+{
+  "name": "hello-world-docker",
+  "version": "1.0.0",
+  "description": "Node.js app with Nginx reverse proxy and HTTPS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "https": "^1.0.0",
+    "ws": "^8.18.0"
+  }
+}

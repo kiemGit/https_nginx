@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      -  .:/usr/src/app
+      - /usr/src/app/node_modules  # To prevent overwriting node_modules if installed in the container
+    ports:
+      - "3003:3003"
+    restart: always
+    environment:
+      - NODE_ENV=development
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+    ports:
+      - "443:443"
+      - "80:80"
+    depends_on:
+      - app
